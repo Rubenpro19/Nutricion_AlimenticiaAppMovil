@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LoginFuncional2</string>
+    <string name="titulo_login">Inicio de Sesión</string>
+    <string name="titulo_registro">Regístrate!</string>
+    <string name="campo_nombre">Nombre y Apellido:</string>
+    <string name="campo_nombre_hint">Ingrese su nombre y apellido</string>
+    <string name="campo_correo">Correo Electrónico:</string>
+    <string name="campo_correo_hint">Ingrese su correo</string>
+    <string name="campo_contrasena">Contraseña:</string>
+    <string name="campo_contrasena_hint">Ingrese su contraseña</string>
+    <string name="campo_contrasena2">Confirme su Contraseña:</string>
+    <string name="campo_contrasena2_hint">Vuelva a escribir su contraseña</string>
+    
+    <string name="boton_registro">Registrarse</string>
+    <string name="tv_go_to_register">¿No tienes cuenta? Regístrate!</string>
+</resources>
