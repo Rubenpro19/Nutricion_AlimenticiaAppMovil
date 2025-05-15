@@ -37,7 +37,7 @@ class MenuActivity : AppCompatActivity() {
         lifecycleScope.launch {
             usuarioDao.obtenerUsuario().collect{ lista ->
                 val texto = lista.joinToString("\n") {
-                    "Nombre: ${it.nombre}, Email: ${it.email} \n"
+                    "Nombre: ${it.nombre}, Email: ${it.email}, Contraseña: ${it.password} \n"
                 }
                 tvUsuarios.text = texto
             }

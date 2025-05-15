@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.loginfuncional2.utilidades.Seguridad
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,7 +58,9 @@ class MainActivity : AppCompatActivity() {
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val usuario = usuarioDao.login(correo, password)
+            val hashedPassword = Seguridad.hashPassword(password)
+            val usuario = usuarioDao.login(correo, hashedPassword)
+
             withContext(Dispatchers.Main) {
                 if (usuario != null) {
                     Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()

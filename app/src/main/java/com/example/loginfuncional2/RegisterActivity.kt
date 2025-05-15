@@ -12,6 +12,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.loginfuncional2.utilidades.Seguridad
+
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -81,6 +83,10 @@ class RegisterActivity : AppCompatActivity() {
             etPassword.setError("Campo requerido")
             return
         }
+        if (password.length < 8) {
+            etPassword.setError ("La contraseña debe tener al menos 8 caracteres")
+            return
+        }
         if (password2.isEmpty()) {
             etPassword2.setError("Campo requerido")
             return
@@ -105,7 +111,8 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "El correo ya está registrado", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                val nuevoUsuario = Usuario(nombre = nombre, email = email, password = password)
+                val hashedPassword = Seguridad.hashPassword(password)
+                val nuevoUsuario = Usuario(nombre = nombre, email = email, password = hashedPassword)
                 usuarioDao.insertar(nuevoUsuario)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Registro exitoso", Toast.LENGTH_SHORT).show()
