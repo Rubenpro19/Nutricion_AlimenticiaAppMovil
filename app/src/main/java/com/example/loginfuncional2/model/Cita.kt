@@ -3,11 +3,10 @@ package com.example.loginfuncional2.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "usuarios")
-data class Usuario(
+@Entity(tableName = "Cita")
+data class Cita(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val nombre: String,
-    val email: String,
-    val password: String,
-    val rol: String
+    val usuarioId: Int,
+    val fecha: String,
+    val hora: String,
 )

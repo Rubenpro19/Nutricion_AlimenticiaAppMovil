@@ -1,7 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.LoginFuncional2" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Theme.LoginFuncional2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <!-- Fondo principal: casi negro, sin ser puro -->
+        <item name="colorPrimary">#121212</item>
+        <item name="colorPrimaryVariant">#1F1F1F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Secundario: acento profesional (verde azulado) -->
+        <item name="colorSecondary">#03DAC5</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- Fondo general de actividades -->
+        <item name="android:windowBackground">#121212</item>
+
+        <!-- Botones y componentes de superficie -->
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+
+        <!-- Texto principal -->
+        <item name="android:textColor">#FFFFFF</item>
+
+        <!-- Estado de la barra superior -->
+        <item name="android:statusBarColor">#121212</item>
+
+        <!-- Opcional: navegación inferior -->
+        <item name="android:navigationBarColor">#121212</item>
     </style>
 </resources>

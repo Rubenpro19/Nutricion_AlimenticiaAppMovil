@@ -55,4 +55,6 @@ dependencies {
     kapt(libs.androidx.room.compiler)//Genera código de BD
     implementation(libs.kotlinx.coroutines.core) //Tareas de backgraud
     implementation(libs.kotlinx.coroutines.android) //Tareas asincronas
+    implementation(libs.jbcrypt)
+
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -22,25 +23,49 @@
 
         </TextView>
 
-        <TextView
-            android:id="@+id/tv_go_to_atrasmenu"
-            android:layout_width="70dp"
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
             android:layout_gravity="end"
-            android:padding="16dp"
-            android:text="Atras"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:background="@drawable/redondeo"
-            android:textColor="@color/black"/>
+            android:layout_margin="16dp"/>
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp"/>
+
+            <TextView
+                android:id="@+id/tvFechaSeleccionada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:padding="16dp"/>
+        </CalendarView>
 
         <TextView
-            android:id="@+id/tvUsuarios"
+            android:id="@+id/tvmisCitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Cargando usuarios..."
-            android:textSize="16sp" />
+            android:text="Mis citas">
+
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvmisCitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
 
     </LinearLayout>

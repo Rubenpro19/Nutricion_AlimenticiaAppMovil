@@ -2,17 +2,22 @@ package com.example.loginfuncional2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loginfuncional2.database.AppDatabase
+import com.example.loginfuncional2.model.Usuario
+import com.example.loginfuncional2.utilidades.RedirigirSegunSesion
+import com.example.loginfuncional2.utilidades.Seguridad
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.example.loginfuncional2.utilidades.Seguridad
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,48 +28,63 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        etEmail = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        btniniciosesion = findViewById(R.id.btniniciosesion)
-        tvToRegister = findViewById(R.id.tv_ToRegister)
+        crearUsuarioAdminPorDefecto {
+            // Solo después de asegurar que el admin está, redireccionamos
+            RedirigirSegunSesion.redirigirSegunSesion(this)
 
-        btniniciosesion.setOnClickListener{
-            validarInicio()
-        }
+            setContentView(R.layout.activity_main)
 
-        tvToRegister.setOnClickListener {
-            goToRegister()
+            etEmail = findViewById(R.id.etEmail)
+            etPassword = findViewById(R.id.etPassword)
+            btniniciosesion = findViewById(R.id.btniniciosesion)
+            tvToRegister = findViewById(R.id.tv_ToRegister)
+
+            btniniciosesion.setOnClickListener { validarInicio() }
+            tvToRegister.setOnClickListener { goToRegister() }
         }
     }
 
-    private fun validarInicio() {
+    private fun validarCampos(): Boolean {
         val correo = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
 
-        if (correo.isEmpty()) {
-            etEmail.error = "Campo requerido"
-            return
+        if (correo.isEmpty()) { etEmail.error = "Campo requerido"; etEmail.requestFocus(); return false }
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            etEmail.error = "Ingrese un correo válido"
+            etEmail.requestFocus()
+            return false
         }
+        if (password.isEmpty()) { etPassword.error = "Campo requerido"; etPassword.requestFocus(); return false }
+        return true
+    }
 
-        if (password.isEmpty()) {
-            etPassword.error = "Campo requerido"
-            return
-        }
+    private fun validarInicio() {
+        if (!validarCampos()) return
+        val correo = etEmail.text.toString().trim()
+        val password = etPassword.text.toString()
 
-        // Validación real con Room
         val db = AppDatabase.getDatabase(this)
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val hashedPassword = Seguridad.hashPassword(password)
-            val usuario = usuarioDao.login(correo, hashedPassword)
-
+            val usuario = usuarioDao.buscarPorEmail(correo)
             withContext(Dispatchers.Main) {
                 if (usuario != null) {
-                    Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                    goToMenu()
+                    val passwordValida = Seguridad.verificarPassword(password, usuario.password)
+                    if (passwordValida) {
+                        val sessionManager = SessionManager(this@MainActivity)
+                        sessionManager.saveToken(correo)
+                        sessionManager.saveUserId(usuario.id)
+                        sessionManager.saveUserRole(usuario.rol)
+
+                        Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+
+                        // Usamos la clase utilitaria para redirigir según sesión
+                        RedirigirSegunSesion.redirigirSegunSesion(this@MainActivity)
+                    } else {
+                        Toast.makeText(applicationContext, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     Toast.makeText(applicationContext, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                 }
@@ -72,14 +92,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToRegister(){
-        val i = Intent(this, RegisterActivity::class.java)
-        startActivity(i)
+    private fun crearUsuarioAdminPorDefecto(callback: () -> Unit) {
+        val db = AppDatabase.getDatabase(this)
+        val usuarioDao = db.usuarioDao()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val existente = usuarioDao.buscarPorEmail("admin@gmail.com")
+            if (existente == null) {
+                val contrasenaHasheada = Seguridad.hashPassword("admin123")
+                val admin = Usuario(
+                    nombre = "Administrador",
+                    email = "admin@gmail.com",
+                    password = contrasenaHasheada,
+                    rol = "Admin"
+                )
+                usuarioDao.insertar(admin)
+            }
+
+            withContext(Dispatchers.Main) {
+                callback()
+            }
+        }
     }
 
-    private fun goToMenu(){
-        val i = Intent(this, MenuActivity::class.java)
+
+    private fun goToRegister() {
+        val i = Intent(this, RegisterActivity::class.java)
         startActivity(i)
-        finish()
     }
 }

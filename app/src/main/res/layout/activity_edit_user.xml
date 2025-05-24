@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".RegisterActivity"
+    tools:context=".admin.EditUserActivity"
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,42 +14,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_Logo"
-            android:src="@drawable/logo"
-            android:layout_gravity="center"
-            android:layout_marginBottom="26dp"
-            android:layout_width="130dp"
-            android:layout_height="130dp"/>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:background="@drawable/redondeo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnAtras"
+            android:backgroundTint="@color/black"
+            android:text="Atrás"
+            android:textColor="@color/white"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/tv_Registro"
-                android:text="@string/titulo_registro"
+                android:text="@string/titulo_editarUser"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginBottom="28dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
+            <!-- Nombre -->
             <TextView
                 android:text="@string/campo_nombre"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilNombre"
@@ -60,129 +52,100 @@
                 android:layout_marginBottom="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombre"
                     android:textSize="16sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Correo -->
             <TextView
                 android:text="@string/campo_correo"
-                android:textStyle="bold"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilEmail"
                 android:hint="@string/campo_correo_hint"
-                android:textColorHint="@color/gray"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
-                    android:textSize="16sp"
                     android:inputType="textEmailAddress"
+                    android:textSize="16sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Rol -->
             <TextView
-                android:text="@string/campo_contrasena"
-                android:textStyle="bold"
+                android:text="@string/campoRol"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spinnerRol"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <!-- Contraseña -->
+            <TextView
+                android:text="@string/campo_contrasena"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPassword"
                 android:hint="@string/campo_contrasena_hint"
-                android:textColorHint="@color/gray"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:endIconMode="password_toggle">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:textSize="16sp"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:text="@string/campo_contrasena2"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword2"
-                android:hint="@string/campo_contrasena2_hint"
-                android:textColorHint="@color/gray"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:endIconMode="password_toggle">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword2"
-                    android:textSize="16sp"
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+            <!-- Botón Guardar -->
             <Button
-                android:id="@+id/btnRegistro"
-                android:backgroundTint="@color/black"
-                android:text="Registrarse"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
+                android:id="@+id/btnGuardar"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"/>
-
-            <TextView
-                android:id="@+id/tv_go_to_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ya tengo cuenta"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:padding="12dp"/>
-        </LinearLayout>
-
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:text="@string/boton_actualizar_usuario"
+                android:textColor="@color/white" />
     </LinearLayout>
-
 </ScrollView>

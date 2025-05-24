@@ -5,11 +5,17 @@ import com.example.loginfuncional2.model.Usuario
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.loginfuncional2.dao.CitaDao
+import com.example.loginfuncional2.dao.TurnoDao
 import com.example.loginfuncional2.dao.UsuarioDao
+import com.example.loginfuncional2.model.Cita
+import com.example.loginfuncional2.model.Turno
 
-@Database(entities = [Usuario::class], version = 1, exportSchema = false)
+@Database(entities = [Usuario::class, Cita::class, Turno ::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun usuarioDao(): UsuarioDao //Metodo para acceder a la interfaz UsuarioDao
+    abstract fun usuarioDao(): UsuarioDao
+    abstract fun citaDao(): CitaDao
+    abstract fun turnoDao(): TurnoDao
 
     companion object {
         @Volatile
@@ -20,8 +26,10 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "Tierra.db"
-                ).build()
+                    "prueba2.db"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
