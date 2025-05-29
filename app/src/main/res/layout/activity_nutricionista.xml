@@ -1,82 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="24dp"
-    android:layout_gravity="center"
-    android:background="#F8F9FA">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="26dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTitulo"
+        <!-- Header con imagen de perfil -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bienvenido, Nutricionista"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/teal_100"
+            app:strokeWidth="1dp">
 
-        <Button
-            android:id="@+id/btnRegistrarAtencion"
-            android:text="📝 Registrar Atención"
-            android:backgroundTint="#2ECC71"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="32dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Imagen de perfil circular -->
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nutritionist"
+                    android:contentDescription="@string/profile_image"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_background"/>
+
+                <!-- Nombre del nutricionista -->
+                <TextView
+                    android:id="@+id/tvNombreNutricionista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Lic. María González"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+                <!-- Especialidad -->
+                <TextView
+                    android:id="@+id/tvEspecialidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="Nutrición Clínica"
+                    android:textColor="@color/gray_600"
+                    android:textSize="16sp"/>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/gray_200"/>
+
+                <!-- Info adicional -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pacientes"
+                            android:textColor="@color/gray_600"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvNumPacientes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="42"
+                            android:textColor="@color/teal_700"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/gray_200"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rating"
+                            android:textColor="@color/gray_600"
+                            android:textSize="14sp"/>
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="4.5"
+                            android:stepSize="0.5"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Contenedor de botones (usando tus IDs originales) -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <Button
-            android:id="@+id/btnVerTurnos"
-            android:text="📋 Ver Turnos"
-            android:backgroundTint="#2ECC71"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <!-- Registrar Atención -->
+            <Button
+                android:id="@+id/btnRegistrarAtencion"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_edit_note"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/teal_700"
+                android:paddingVertical="16dp"
+                android:text="📝 Registrar Atención"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/btnListaPacientes"
-            android:text="👥 Lista de Pacientes"
-            android:backgroundTint="#2ECC71"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <!-- Ver Turnos -->
+            <Button
+                android:id="@+id/btnVerTurnos"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_calendar_today"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/teal_700"
+                android:paddingVertical="16dp"
+                android:text="📋 Ver Turnos"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/btnHistorialPaciente"
-            android:text="📑 Historial Paciente"
-            android:backgroundTint="#2ECC71"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <!-- Lista de Pacientes -->
+            <Button
+                android:id="@+id/btnListaPacientes"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_group"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/teal_700"
+                android:paddingVertical="16dp"
+                android:text="👥 Lista de Pacientes"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/btnGenerarHorarios"
-            android:text="🕒 Generar Horarios"
-            android:backgroundTint="#2ECC71"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <!-- Historial Paciente -->
+            <Button
+                android:id="@+id/btnHistorialPaciente"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_history"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/teal_700"
+                android:paddingVertical="16dp"
+                android:text="📑 Historial Paciente"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:text="🔓 Cerrar Sesión"
-            android:backgroundTint="#E74C3C"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="24dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <!-- Generar Horarios -->
+            <Button
+                android:id="@+id/btnGenerarHorarios"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_schedule"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/teal_700"
+                android:paddingVertical="16dp"
+                android:text="🕒 Generar Horarios"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
+            <!-- Cerrar Sesión -->
+            <Button
+                android:id="@+id/btnCerrarSesion"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red_100"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/red_700"
+                android:paddingVertical="16dp"
+                android:text="🔓 Cerrar Sesión"
+                android:textAllCaps="false"
+                android:textColor="@color/red_700"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

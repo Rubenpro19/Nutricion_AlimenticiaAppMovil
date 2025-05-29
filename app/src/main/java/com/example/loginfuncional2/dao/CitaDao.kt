@@ -11,14 +11,14 @@ interface CitaDao {
     @Insert
     suspend fun insertarCita(cita: Cita)
 
-    @Query("SELECT * FROM Cita WHERE usuarioId = :idUsuario")
+    @Query("SELECT * FROM citas WHERE usuarioId = :idUsuario")
     fun obtenerCitasUsuario(idUsuario: Int): Flow<List<Cita>>
 
-    @Query("SELECT * FROM Cita WHERE fecha = :fecha AND hora = :hora LIMIT 1")
+    @Query("SELECT * FROM citas WHERE fecha = :fecha AND hora = :hora LIMIT 1")
     fun obtenerCitaPorFechaYHora(fecha: String, hora: String): Cita?
 
     //mostrar la cita por el usuario loguado
-    @Query("SELECT * FROM Cita WHERE usuarioId = :idUsuario")
+    @Query("SELECT * FROM citas WHERE usuarioId = :idUsuario")
     fun obtenerCitasPorUsuario(idUsuario: Int): Flow<List<Cita>>
 
 }

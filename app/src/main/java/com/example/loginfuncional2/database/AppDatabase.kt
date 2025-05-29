@@ -11,7 +11,7 @@ import com.example.loginfuncional2.dao.UsuarioDao
 import com.example.loginfuncional2.model.Cita
 import com.example.loginfuncional2.model.Turno
 
-@Database(entities = [Usuario::class, Cita::class, Turno ::class], version = 1, exportSchema = false)
+@Database(entities = [Usuario::class, Cita::class, Turno ::class], version = 15, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
     abstract fun citaDao(): CitaDao

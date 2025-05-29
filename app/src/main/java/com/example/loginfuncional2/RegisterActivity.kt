@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val existente = usuarioDao.buscarPorEmail(email)
+            val existente = usuarioDao.buscarporEmail(email)
             if (existente != null) {
                 withContext(Dispatchers.Main) {
                     etEmail.error = "El correo ya está registrado"; etEmail.requestFocus()

@@ -14,6 +14,7 @@ import com.example.loginfuncional2.database.AppDatabase
 import com.example.loginfuncional2.model.Usuario
 import com.example.loginfuncional2.utilidades.RedirigirSegunSesion
 import com.example.loginfuncional2.utilidades.Seguridad
+import com.example.loginfuncional2.utilidades.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         crearUsuarioAdminPorDefecto {
-            // Solo después de asegurar que el admin está, redireccionamos
             RedirigirSegunSesion.redirigirSegunSesion(this)
 
             setContentView(R.layout.activity_main)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val usuario = usuarioDao.buscarPorEmail(correo)
+            val usuario = usuarioDao.buscarporEmail(correo)
             withContext(Dispatchers.Main) {
                 if (usuario != null) {
                     val passwordValida = Seguridad.verificarPassword(password, usuario.password)
@@ -77,10 +77,9 @@ class MainActivity : AppCompatActivity() {
                         sessionManager.saveToken(correo)
                         sessionManager.saveUserId(usuario.id)
                         sessionManager.saveUserRole(usuario.rol)
-
-                        Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-
-                        // Usamos la clase utilitaria para redirigir según sesión
+                        sessionManager.saveUserName(usuario.nombre) // <- Guardamos el nombre aquí
+                        sessionManager.saveUserEmail(usuario.email) // <- Guardamos el email aquí
+                        Toast.makeText(applicationContext, "Bienvenido, ${usuario.nombre}", Toast.LENGTH_SHORT).show()
                         RedirigirSegunSesion.redirigirSegunSesion(this@MainActivity)
                     } else {
                         Toast.makeText(applicationContext, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val existente = usuarioDao.buscarPorEmail("admin@gmail.com")
+            val existente = usuarioDao.buscarporEmail("admin@gmail.com")
             if (existente == null) {
                 val contrasenaHasheada = Seguridad.hashPassword("admin123")
                 val admin = Usuario(
@@ -105,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                     email = "admin@gmail.com",
                     password = contrasenaHasheada,
                     rol = "Admin"
+
                 )
                 usuarioDao.insertar(admin)
             }
@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun goToRegister() {
         val i = Intent(this, RegisterActivity::class.java)

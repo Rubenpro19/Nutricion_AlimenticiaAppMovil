@@ -9,8 +9,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.loginfuncional2.AdminActivity
 import com.example.loginfuncional2.R
 import com.example.loginfuncional2.database.AppDatabase
@@ -75,7 +73,7 @@ class AddUserActivity : AppCompatActivity() {
         val usuarioDao = db.usuarioDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val existente = usuarioDao.buscarPorEmail(email)
+            val existente = usuarioDao.buscarporEmail(email)
             if (existente != null) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "El correo ya está registrado", Toast.LENGTH_SHORT).show()

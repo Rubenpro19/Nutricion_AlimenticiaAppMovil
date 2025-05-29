@@ -3,7 +3,6 @@ package com.example.loginfuncional2.admin
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loginfuncional2.AdminActivity
 import com.example.loginfuncional2.R
@@ -98,7 +97,7 @@ class EditUserActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val dao = AppDatabase.getDatabase(this@EditUserActivity).usuarioDao()
 
-            val usuarioConMismoEmail = dao.buscarPorEmail(email)
+            val usuarioConMismoEmail = dao.buscarporEmail(email)
             val usuarioActual = dao.obtenerUsuarioPorId(usuarioId)
 
             if (usuarioConMismoEmail != null && usuarioConMismoEmail.id != usuarioId) {

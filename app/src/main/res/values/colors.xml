@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="teal_100">#B2DFDB</color>
+    <color name="teal_700">#00796B</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_600">#757575</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="red_700">#D32F2F</color>
+    <!-- Añade esto en res/values/colors.xml -->
+    <color name="primaryColor">#3F51B5</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="errorColor">#F44336</color>
     <color name="black">#FF000000</color>
     <color name="black_light">#1D1B1B</color>
+
     <color name="white">#FFFFFFFF</color>
     <color name="green">#007A06</color>
     <color name="green_light">#C3A4D07B</color>
-    <color name="gray">#595959</color>
+    <color name="red">#FF0000</color>
+    <color name="red_light">#FF7F7F</color>
+    <color name="blue">#0000FF</color>
+    <color name="blue_light">#FF7F7F</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="yellow_light">#FFFF7F</color>
+    <color name="purple">#800080</color>
+    <color name="purple_light">#FF7F7F</color>
+    <color name="gray">#808080</color>
+    <color name="gray_light">#FF7F7F</color>
+    <color name="orange">#FFA500</color>
+    <color name="orange_light">#FF7F7F</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="pink_light">#FF7F7F</color>
+    <color name="brown">#A52A2A</color>
+    <color name="brown_light">#FF7F7F</color>
+    <color name="teal">#008080</color>
+    <color name="teal_light">#FF7F7F</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="cyan_light">#FF7F7F</color>
+    <color name="lime">#00FF00</color>
+    <color name="lime_light">#FF7F7F</color>
+    <color name="navy">#000080</color>
+    <color name="navy_light">#FF7F7F</color>
+    <color name="maroon">#800000</color>
+    <color name="maroon_light">#FF7F7F</color>
+    <color name="olive">#808000</color>
+    <color name="olive_light">#FF7F7F</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="silver_light">#FF7F7F</color>
+    <color name="lime_green">#32CD32</color>
+
 </resources>

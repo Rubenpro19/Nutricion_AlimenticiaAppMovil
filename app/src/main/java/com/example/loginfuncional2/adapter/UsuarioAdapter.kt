@@ -1,4 +1,3 @@
-// UsuarioAdapter.kt
 package com.example.loginfuncional2.adapter
 
 import android.content.Context

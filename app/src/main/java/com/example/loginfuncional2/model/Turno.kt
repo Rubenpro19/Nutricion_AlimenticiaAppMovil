@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Turno(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val idNutricionista: Int,     // Relación con el usuario
+    val fecha: String,            // Ej: "2023-10-01"
     val diaSemana: String,        // Ej: "Lunes", "Martes"
     val horaInicio: String,       // Ej: "08:00"
     val horaFin: String,          // Ej: "09:00"

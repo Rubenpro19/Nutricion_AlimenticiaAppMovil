@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nutrición</string>
+    <string name="app_name">Nutricion</string>
     <string name="titulo_login">Inicio de Sesión</string>
     <string name="titulo_registro">Regístrate!</string>
     <string name="campo_nombre">Nombre y Apellido:</string>
@@ -10,9 +10,12 @@
     <string name="campo_contrasena_hint">Ingrese su contraseña</string>
     <string name="campo_contrasena2">Confirme su Contraseña:</string>
     <string name="campo_contrasena2_hint">Vuelva a escribir su contraseña</string>
+    <string name="profile_image">Foto de perfil</string>
+
+    <string name="boton_registro">Registrarse</string>
+    <string name="tv_go_to_register">¿No tienes cuenta? Regístrate!</string>
     <string name="titulo_editarUser">Editar Usuario</string>
     <string name="campoRol">Elija un rol:</string>
-    <string name="boton_registro">Registrarse</string>
     <string name="boton_actualizar_usuario">Guardar Cambios</string>
-    <string name="tv_go_to_register">¿No tienes cuenta? Regístrate!</string>
+
 </resources>
