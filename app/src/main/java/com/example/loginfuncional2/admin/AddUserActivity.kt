@@ -43,7 +43,11 @@ class AddUserActivity : AppCompatActivity() {
         spinnerRol.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,roles)
 
         btnRegistro.setOnClickListener { validarRegistro() }
-        btnAtras.setOnClickListener { goToAtras(); finish() }
+
+        btnAtras.setOnClickListener {
+            startActivity(Intent(this, AdminActivity::class.java))
+            finish()
+        }
     }
 
     private fun validarRegistro(){
@@ -65,7 +69,6 @@ class AddUserActivity : AppCompatActivity() {
         if (password != password2) { etPassword2.error = "Las contraseñas no coinciden"; etPassword2.requestFocus(); return }
 
         registrarUsuario(nombre, email, password, rol)
-
     }
 
     private fun registrarUsuario(nombre: String, email: String, password: String, rol: String) {
@@ -80,7 +83,12 @@ class AddUserActivity : AppCompatActivity() {
                 }
             } else {
                 val hashedPassword = Seguridad.hashPassword(password)
-                val nuevoUsuario = Usuario(nombre = nombre, email = email, password = hashedPassword, rol = rol)
+                val nuevoUsuario = Usuario(
+                    nombre = nombre,
+                    email = email,
+                    password = hashedPassword,
+                    rol = rol)
+
                 usuarioDao.insertar(nuevoUsuario)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(applicationContext, "Registro exitoso", Toast.LENGTH_SHORT).show()
@@ -88,12 +96,6 @@ class AddUserActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private  fun goToAtras(){
-        val regreso = Intent(this, AdminActivity::class.java)
-        startActivity(regreso)
-        finish()
     }
 
     private fun limpiarCampos() {

@@ -21,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var etPassword2: EditText
     private lateinit var btnRegistro: Button
-
+    private lateinit var tvLogin: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -31,21 +31,15 @@ class RegisterActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         etPassword2 = findViewById(R.id.etPassword2)
         btnRegistro = findViewById(R.id.btnRegistro)
+        tvLogin = findViewById(R.id.tv_go_to_login)
 
         btnRegistro.setOnClickListener {
             validarRegistro()
         }
 
-        val tvToRegister = findViewById<TextView>(R.id.tv_go_to_login)
-        tvToRegister.setOnClickListener{
+        tvLogin.setOnClickListener{
             goToLogin()
         }
-    }
-
-    private fun goToLogin(){
-        val l = Intent(this, MainActivity::class.java)
-        startActivity(l)
-        finish()
     }
 
     private fun validarRegistro(){
@@ -55,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         val password2 = etPassword2.text.toString().trim()
 
         if (nombre.isEmpty()) { etNombre.error = "Campo requerido"; etNombre.requestFocus(); return }
-        if (nombre.length < 8) { etNombre.error = "El nombre debe tener al menos 8 caracteres"; etNombre.requestFocus(); return }
+        if (nombre.length < 6) { etNombre.error = "El nombre debe tener al menos 8 caracteres"; etNombre.requestFocus(); return }
         if (nombre.any { it.isDigit() }) { etNombre.error= "El nombre no debe contener números"; etNombre.requestFocus(); return }
 
         if (email.isEmpty()) { etEmail.error = "Campo requerido"; etEmail.requestFocus(); return }
@@ -88,5 +82,10 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun goToLogin(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

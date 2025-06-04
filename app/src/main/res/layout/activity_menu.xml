@@ -60,25 +60,36 @@
                         android:text="correo@paciente.com"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
+
                     <TextView
                         android:id="@+id/tvTelefonoPaciente"
+                        android:text="Telefono: +123456789"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+34 123 456 789"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
+
                     <TextView
                         android:id="@+id/tvEdadPaciente"
                         android:text="Edad: 30 años"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                     </TextView>
+
                     <TextView
                         android:id="@+id/tvCedulaPaciente"
-                        android:text="Cédula: 123456789"
+                        android:text="Cedula: 123456789"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvFechaNacimiento"
+                        android:text="Fecha de Nacimiento: 01/01/1990"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <ImageButton
@@ -93,10 +104,10 @@
 
         <!-- Botón para agendar nueva cita -->
         <Button
-            android:id="@+id/btnNuevaCita"
+            android:id="@+id/btnReservarCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📅 Agendar Nueva Cita"
+            android:text="📅 Reservar Cita"
             android:backgroundTint="#2ECC71"
             android:textColor="@android:color/white"
             android:layout_marginBottom="16dp" />

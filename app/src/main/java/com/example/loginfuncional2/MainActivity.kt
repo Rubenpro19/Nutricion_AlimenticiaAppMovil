@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loginfuncional2.database.AppDatabase
 import com.example.loginfuncional2.model.Usuario
@@ -41,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             tvToRegister = findViewById(R.id.tv_ToRegister)
 
             btniniciosesion.setOnClickListener { validarInicio() }
-            tvToRegister.setOnClickListener { goToRegister() }
+            tvToRegister.setOnClickListener { startActivity(Intent(this, RegisterActivity::class.java)); finish() }
         }
     }
 
@@ -50,11 +48,7 @@ class MainActivity : AppCompatActivity() {
         val password = etPassword.text.toString()
 
         if (correo.isEmpty()) { etEmail.error = "Campo requerido"; etEmail.requestFocus(); return false }
-        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-            etEmail.error = "Ingrese un correo válido"
-            etEmail.requestFocus()
-            return false
-        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) { etEmail.error = "Ingrese un correo válido"; etEmail.requestFocus(); return false }
         if (password.isEmpty()) { etPassword.error = "Campo requerido"; etPassword.requestFocus(); return false }
         return true
     }
@@ -113,10 +107,5 @@ class MainActivity : AppCompatActivity() {
                 callback()
             }
         }
-    }
-
-    private fun goToRegister() {
-        val i = Intent(this, RegisterActivity::class.java)
-        startActivity(i)
     }
 }

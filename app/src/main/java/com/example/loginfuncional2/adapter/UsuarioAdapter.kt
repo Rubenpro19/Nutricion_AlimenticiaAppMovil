@@ -15,6 +15,7 @@ class UsuarioAdapter(
     private val usuarios: List<Usuario>,
     private val onEliminarClick: (Usuario) -> Unit,
     private val onEditarClick: (Usuario) -> Unit
+
 ) : BaseAdapter() {
 
     override fun getCount(): Int = usuarios.size

@@ -6,7 +6,6 @@ import com.example.loginfuncional2.*
 import com.example.loginfuncional2.nutricionista.NutricionistaActivity
 
 object RedirigirSegunSesion {
-
     fun redirigirSegunSesion(activity: Activity) {
         val sessionManager = SessionManager(activity)
         if (sessionManager.isLoggedIn()) {

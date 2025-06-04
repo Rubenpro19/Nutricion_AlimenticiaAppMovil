@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.loginfuncional2.admin.EditUserActivity
+import com.example.loginfuncional2.utilidades.RedirigirSegunSesion
 import com.example.loginfuncional2.utilidades.SessionManager
 
 class AdminActivity : AppCompatActivity() {
@@ -24,7 +25,6 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var usuarioDao: UsuarioDao
     private lateinit var adapter: UsuarioAdapter
     private var listaUsuarios = mutableListOf<Usuario>()
-    private lateinit var btnAddUsuario:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,19 +38,16 @@ class AdminActivity : AppCompatActivity() {
             onEditarClick = { usuario -> editarUsuario(usuario) }
         )
 
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
-        btnLogout.setOnClickListener {
+        findViewById<Button>(R.id.btnLogout).setOnClickListener {
             SessionManager(this).clearToken()
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            })
             finish()
         }
 
-        btnAddUsuario = findViewById(R.id.btnAddUsuario)
-        btnAddUsuario.setOnClickListener {
-            val intent = Intent(this, AddUserActivity::class.java)
-            startActivity(intent)
+        findViewById<Button>(R.id.btnAddUsuario).setOnClickListener {
+            startActivity(Intent(this, AddUserActivity::class.java))
         }
 
         listViewUsuarios.adapter = adapter
